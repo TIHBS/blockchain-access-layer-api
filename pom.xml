@@ -71,13 +71,4 @@
             <version>2.2.21</version>
         </dependency>
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub TIHBS Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/tihbs/blockchain-access-layer-api</url>
-        </repository>
-    </distributionManagement>
-
 </project>
