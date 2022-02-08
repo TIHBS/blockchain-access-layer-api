@@ -24,21 +24,6 @@
         </dependency>
         <dependency>
             <groupId>com.github.arteam</groupId>
-            <artifactId>simple-json-rpc-server</artifactId>
-            <version>${jsonrpc.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.github.arteam</groupId>
             <artifactId>simple-json-rpc-client</artifactId>
             <version>${jsonrpc.version}</version>
             <exclusions>
