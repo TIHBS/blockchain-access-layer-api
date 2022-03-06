@@ -16,8 +16,8 @@ import org.pf4j.ExtensionPoint;
 
 import java.util.Map;
 
-public interface IAdapterExtenstion extends ExtensionPoint {
-    BlockchainAdapter getAdapter(Map<String, String> parameters);
+public interface IAdapterExtension extends ExtensionPoint {
+    BlockchainAdapter getAdapter(Map<String, Object> parameters);
 
     String getBlockChainId();
 }
