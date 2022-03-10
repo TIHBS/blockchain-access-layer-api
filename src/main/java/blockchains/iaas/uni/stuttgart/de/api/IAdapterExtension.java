@@ -19,9 +19,9 @@ import org.pf4j.ExtensionPoint;
 import java.util.Map;
 
 public interface IAdapterExtension extends ExtensionPoint {
-    BlockchainAdapter getAdapter(Class<? extends AbstractConnectionProfile> connectionProfile);
+    BlockchainAdapter getAdapter(AbstractConnectionProfile connectionProfile);
 
-    void registerConnectionProfile(ObjectMapper objectMapper);
+    Class<? extends AbstractConnectionProfile> getConnectionProfileClass();
 
     String getBlockChainId();
 }
