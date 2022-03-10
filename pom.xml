@@ -6,7 +6,7 @@
 
     <groupId>blockchains.iaas.uni.stuttgart.de</groupId>
     <artifactId>blockchain-access-layer-api</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
