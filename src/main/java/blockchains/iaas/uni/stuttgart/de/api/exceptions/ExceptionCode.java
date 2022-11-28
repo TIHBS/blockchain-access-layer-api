@@ -73,4 +73,7 @@ public class ExceptionCode {
      * This is an asynchronous error.
      */
     public static final int Timeout = -32201;
+
+    public static final int InvocationAlreadyConfirmed = -32202;
+
 }
