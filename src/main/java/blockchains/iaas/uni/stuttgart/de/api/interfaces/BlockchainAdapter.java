@@ -126,12 +126,14 @@ public interface BlockchainAdapter {
      */
     String testConnection();
 
-    void signInvocation(String correlationId, String signature);
-    List<Transaction>  getPendingInvocations();
+    boolean signInvocation(String correlationId, String signature);
+
+    List<Transaction> getPendingInvocations();
 
     /**
      * Replaces a smart contract function invocation with a new invocation.
-     * @param correlationId the identifier of the invocation which should be replaced with a new one
+     *
+     * @param correlationId      the identifier of the invocation which should be replaced with a new one
      * @param smartContractPath  the path to the smart contract
      * @param functionIdentifier the function name
      * @param inputs             the input parameters of the function to be invoked
@@ -141,13 +143,13 @@ public interface BlockchainAdapter {
      * @throws NotSupportedException if the underlying blockchain system does not support smart contracts.
      */
     CompletableFuture<Transaction> tryReplaceInvocation(String correlationId, String smartContractPath,
-                           String functionIdentifier,
-                           List<String> typeArguments,
-                           List<Parameter> inputs,
-                           List<Parameter> outputs,
-                           double requiredConfidence,
-                           List<String> signers,
-                           long minimumNumberOfSignatures);
+                                                        String functionIdentifier,
+                                                        List<String> typeArguments,
+                                                        List<Parameter> inputs,
+                                                        List<Parameter> outputs,
+                                                        double requiredConfidence,
+                                                        List<String> signers,
+                                                        long minimumNumberOfSignatures);
 
     void tryCancelInvocation(String correlationId);
 
