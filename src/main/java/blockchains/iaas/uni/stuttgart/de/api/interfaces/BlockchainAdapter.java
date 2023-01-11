@@ -173,7 +173,8 @@ public interface BlockchainAdapter {
      * This method is an alternative to initial gateway implementation where the gateway acts as a centralized entity
      * and handles subscriptions, callbacks and cancelling subscriptions.
      * */
-    boolean delegatedUnsubscribe(String functionIdentifier,
+    boolean delegatedUnsubscribe(String smartContractPath,
+                                 String functionIdentifier,
                                  String eventIdentifier,
                                  List<String> typeArguments,
                                  List<Parameter> parameters,
