@@ -1,7 +1,8 @@
 /********************************************************************************
- * Copyright (c) 2018-2022 Institute for the Architecture of Application System -
+ * Copyright (c) 2018-2023 Institute for the Architecture of Application System -
  * University of Stuttgart
  * Author: Ghareeb Falazi
+ * Co-author: Akshay Patel
  *
  * This program and the accompanying materials are made available under the
  * terms the Apache Software License 2.0
@@ -16,6 +17,8 @@ import blockchains.iaas.uni.stuttgart.de.api.exceptions.BalException;
 import blockchains.iaas.uni.stuttgart.de.api.exceptions.InvalidTransactionException;
 import blockchains.iaas.uni.stuttgart.de.api.exceptions.NotSupportedException;
 import blockchains.iaas.uni.stuttgart.de.api.model.*;
+import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcOptional;
+import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcParam;
 import io.reactivex.Observable;
 
 import java.math.BigDecimal;
@@ -146,5 +149,34 @@ public interface BlockchainAdapter {
                                                         long minimumNumberOfSignatures);
 
     boolean tryCancelInvocation(String correlationId);
+
+    /*
+     * This method should be implemented by the plugin to indicate whether the plugin is capable of handling subscription
+     * and the callbacks both.
+     * */
+    boolean canHandleDelegatedSubscription();
+
+    /*
+     * This method is an alternative to initial gateway implementation where the gateway acts as a centralized entity
+     * and handles subscriptions and callbacks. Using this method, a plugin can must invoke callbacks on its own rather
+     * than gateway managing the callbacks.
+     * */
+    boolean delegatedSubscribe(String functionIdentifier,
+                               String eventIdentifier,
+                               List<Parameter> outputParameters,
+                               double degreeOfConfidence,
+                               String filter,
+                               String callbackUrl,
+                               String correlationId);
+
+    /*
+     * This method is an alternative to initial gateway implementation where the gateway acts as a centralized entity
+     * and handles subscriptions, callbacks and cancelling subscriptions.
+     * */
+    boolean delegatedUnsubscribe(String functionIdentifier,
+                                 String eventIdentifier,
+                                 List<String> typeArguments,
+                                 List<Parameter> parameters,
+                                 String correlationId);
 
 }
