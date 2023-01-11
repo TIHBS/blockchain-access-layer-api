@@ -89,6 +89,8 @@ public interface BlockchainAdapter {
             List<Parameter> outputs,
             double requiredConfidence,
             long timeoutMillis,
+            String signature,
+            String signer,
             List<String> signers,
             long minimumNumberOfSignatures
 
@@ -119,8 +121,10 @@ public interface BlockchainAdapter {
      * @param timeFrame            The timeFrame in which to consider event occurrences.
      * @return A completable future containing a list of matching occurrences.
      */
-    CompletableFuture<QueryResult> queryEvents(String smartContractAddress, String eventIdentifier, List<Parameter> outputParameters,
-                                               String filter, TimeFrame timeFrame) throws BalException;
+    CompletableFuture<QueryResult> queryEvents(String smartContractAddress, String eventIdentifier,
+                                               List<String> typeArguments, List<Parameter> outputParameters, String filter,
+                                               TimeFrame timeFrame)
+            throws BalException;
 
     /**
      * Tests the connection settings with the underlying blockchain
@@ -129,31 +133,18 @@ public interface BlockchainAdapter {
      */
     String testConnection();
 
-    boolean signInvocation(String correlationId, String signature);
 
-    List<Transaction> getPendingInvocations();
-
-    /**
-     * Replaces a smart contract function invocation with a new invocation.
-     *
-     * @param correlationId      the identifier of the invocation which should be replaced with a new one
-     * @param smartContractPath  the path to the smart contract
-     * @param functionIdentifier the function name
-     * @param inputs             the input parameters of the function to be invoked
-     * @param outputs            the output parameters of the function to be invoked
-     * @param requiredConfidence the degree-of-confidence required to be achieved before sending a callback message to the invoker.
-     * @return a completable future that emits a new transaction object holding the result of the invocation.
-     * @throws NotSupportedException if the underlying blockchain system does not support smart contracts.
-     */
     CompletableFuture<Transaction> tryReplaceInvocation(String correlationId, String smartContractPath,
                                                         String functionIdentifier,
                                                         List<String> typeArguments,
                                                         List<Parameter> inputs,
                                                         List<Parameter> outputs,
                                                         double requiredConfidence,
+                                                        String signature,
+                                                        String signer,
                                                         List<String> signers,
                                                         long minimumNumberOfSignatures);
 
-    void tryCancelInvocation(String correlationId);
+    boolean tryCancelInvocation(String correlationId);
 
 }

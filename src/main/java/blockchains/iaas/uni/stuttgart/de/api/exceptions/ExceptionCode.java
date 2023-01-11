@@ -15,7 +15,7 @@ public class ExceptionCode {
     public static final int UnknownError = 0;
 
     /**
-     * The blockchain instance, smart contract, event or function are not found
+     * The blockchain instance, smart contract, or invocation, event or function are not found
      */
     public static final int NotFound = -32000;
     /**
@@ -74,6 +74,10 @@ public class ExceptionCode {
      */
     public static final int Timeout = -32201;
 
-    public static final int InvocationAlreadyConfirmed = -32202;
+    public static final int CancelRejectedError = -32209;
+
+    public static final int ReplaceRejectedError = -32210;
+
+    public static final int InvalidMessageSignedError = -32211;
 
 }
