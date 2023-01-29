@@ -17,9 +17,8 @@ import blockchains.iaas.uni.stuttgart.de.api.exceptions.BalException;
 import blockchains.iaas.uni.stuttgart.de.api.exceptions.InvalidTransactionException;
 import blockchains.iaas.uni.stuttgart.de.api.exceptions.NotSupportedException;
 import blockchains.iaas.uni.stuttgart.de.api.model.*;
-import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcOptional;
-import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcParam;
 import io.reactivex.Observable;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -95,6 +94,7 @@ public interface BlockchainAdapter {
             String signature,
             String signer,
             List<String> signers,
+            List<ImmutablePair<String, String>> signatures,
             long minimumNumberOfSignatures
 
     ) throws BalException;
