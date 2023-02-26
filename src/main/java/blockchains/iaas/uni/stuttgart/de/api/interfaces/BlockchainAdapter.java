@@ -1,7 +1,8 @@
 /********************************************************************************
- * Copyright (c) 2018-2022 Institute for the Architecture of Application System -
+ * Copyright (c) 2018-2023 Institute for the Architecture of Application System -
  * University of Stuttgart
  * Author: Ghareeb Falazi
+ * Co-author: Akshay Patel
  *
  * This program and the accompanying materials are made available under the
  * terms the Apache Software License 2.0
@@ -17,6 +18,7 @@ import blockchains.iaas.uni.stuttgart.de.api.exceptions.InvalidTransactionExcept
 import blockchains.iaas.uni.stuttgart.de.api.exceptions.NotSupportedException;
 import blockchains.iaas.uni.stuttgart.de.api.model.*;
 import io.reactivex.Observable;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -84,10 +86,17 @@ public interface BlockchainAdapter {
     CompletableFuture<Transaction> invokeSmartContract(
             String smartContractPath,
             String functionIdentifier,
+            List<String> typeArguments,
             List<Parameter> inputs,
             List<Parameter> outputs,
             double requiredConfidence,
-            long timeoutMillis
+            long timeoutMillis,
+            String signature,
+            String signer,
+            List<String> signers,
+            List<ImmutablePair<String, String>> signatures,
+            long minimumNumberOfSignatures
+
     ) throws BalException;
 
     /**
@@ -115,12 +124,60 @@ public interface BlockchainAdapter {
      * @param timeFrame            The timeFrame in which to consider event occurrences.
      * @return A completable future containing a list of matching occurrences.
      */
-    CompletableFuture<QueryResult> queryEvents(String smartContractAddress, String eventIdentifier, List<Parameter> outputParameters,
-                                               String filter, TimeFrame timeFrame) throws BalException;
+    CompletableFuture<QueryResult> queryEvents(String smartContractAddress, String eventIdentifier,
+                                               List<String> typeArguments, List<Parameter> outputParameters, String filter,
+                                               TimeFrame timeFrame)
+            throws BalException;
+
     /**
      * Tests the connection settings with the underlying blockchain
      *
      * @return true if the connection is successful, an error message otherwise.
      */
     String testConnection();
+
+
+    CompletableFuture<Transaction> tryReplaceInvocation(String correlationId, String smartContractPath,
+                                                        String functionIdentifier,
+                                                        List<String> typeArguments,
+                                                        List<Parameter> inputs,
+                                                        List<Parameter> outputs,
+                                                        double requiredConfidence,
+                                                        String signature,
+                                                        String signer,
+                                                        List<String> signers,
+                                                        long minimumNumberOfSignatures);
+
+    boolean tryCancelInvocation(String correlationId);
+
+    /*
+     * This method should be implemented by the plugin to indicate whether the plugin is capable of handling subscription
+     * and the callbacks both.
+     * */
+    boolean canHandleDelegatedSubscription();
+
+    /*
+     * This method is an alternative to initial gateway implementation where the gateway acts as a centralized entity
+     * and handles subscriptions and callbacks. Using this method, a plugin can must invoke callbacks on its own rather
+     * than gateway managing the callbacks.
+     * */
+    boolean delegatedSubscribe(String functionIdentifier,
+                               String eventIdentifier,
+                               List<Parameter> outputParameters,
+                               double degreeOfConfidence,
+                               String filter,
+                               String callbackUrl,
+                               String correlationId);
+
+    /*
+     * This method is an alternative to initial gateway implementation where the gateway acts as a centralized entity
+     * and handles subscriptions, callbacks and cancelling subscriptions.
+     * */
+    boolean delegatedUnsubscribe(String smartContractPath,
+                                 String functionIdentifier,
+                                 String eventIdentifier,
+                                 List<String> typeArguments,
+                                 List<Parameter> parameters,
+                                 String correlationId);
+
 }
