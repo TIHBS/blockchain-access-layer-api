@@ -11,13 +11,16 @@
 
 package blockchains.iaas.uni.stuttgart.de.api;
 
+import blockchains.iaas.uni.stuttgart.de.api.connectionprofiles.AbstractConnectionProfile;
 import blockchains.iaas.uni.stuttgart.de.api.interfaces.BlockchainAdapter;
 import org.pf4j.ExtensionPoint;
 
-import java.util.Map;
+public interface IAdapterExtension extends ExtensionPoint {
+    BlockchainAdapter getAdapter(AbstractConnectionProfile connectionProfile);
 
-public interface IAdapterExtenstion extends ExtensionPoint {
-    BlockchainAdapter getAdapter(Map<String, String> parameters);
+    Class<? extends AbstractConnectionProfile> getConnectionProfileClass();
+
+    String getConnectionProfileNamedType();
 
     String getBlockChainId();
 }
