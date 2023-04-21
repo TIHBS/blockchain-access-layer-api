@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2018-2022 Institute for the Architecture of Application System -
+ * Copyright (c) 2018-2023 Institute for the Architecture of Application System -
  * University of Stuttgart
  * Author: Ghareeb Falazi
  *
@@ -117,6 +117,14 @@ public interface BlockchainAdapter {
      */
     CompletableFuture<QueryResult> queryEvents(String smartContractAddress, String eventIdentifier, List<Parameter> outputParameters,
                                                String filter, TimeFrame timeFrame) throws BalException;
+
+    /**
+     * Gets information about the resource manager smart contract of the underlying blockchain network that can be used
+     * in TCCSCIs.
+     * @return information about the resource manager smart contract of the underlying blockchain network
+     * @throws NotSupportedException if the underlying blockchain network does not support TCCSCIs.
+     */
+    SmartContract getResourceManagerSmartContract() throws NotSupportedException;
     /**
      * Tests the connection settings with the underlying blockchain
      *
