@@ -22,7 +22,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement(name="SmartContract")
+@XmlRootElement(name="SmartContractFunction")
 public class SmartContractFunction {
     String functionIdentifier;
     List<Parameter> inputs;

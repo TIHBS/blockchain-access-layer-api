@@ -10,7 +10,10 @@
  *******************************************************************************/
 package blockchains.iaas.uni.stuttgart.de.api.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
@@ -19,9 +22,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement(name="SmartContract")
-public class SmartContract {
-    String smartContractPath;
-    List<SmartContractFunction> functions;
-    List<SmartContractEvent> events;
+@XmlRootElement(name="SmartContractEvent")
+public class SmartContractEvent {
+    String functionIdentifier;
+    List<Parameter> outputs;
 }
