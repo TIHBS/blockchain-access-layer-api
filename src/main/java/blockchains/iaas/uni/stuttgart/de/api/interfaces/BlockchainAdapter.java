@@ -124,7 +124,7 @@ public interface BlockchainAdapter {
      * @return information about the resource manager smart contract of the underlying blockchain network
      * @throws NotSupportedException if the underlying blockchain network does not support TCCSCIs.
      */
-    SmartContract getResourceManagerSmartContract() throws NotSupportedException;
+    ResourceManagerSmartContract getResourceManagerSmartContract() throws NotSupportedException;
     /**
      * Tests the connection settings with the underlying blockchain
      *

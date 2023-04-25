@@ -19,7 +19,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement(name="SmartContract")
 public class SmartContract {
     String smartContractPath;
     List<SmartContractFunction> functions;
