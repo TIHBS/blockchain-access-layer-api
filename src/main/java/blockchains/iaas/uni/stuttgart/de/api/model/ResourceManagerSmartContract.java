@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@NoArgsConstructor
 public abstract class ResourceManagerSmartContract extends SmartContract{
     abstract SmartContractEvent getAbortEvent();
     abstract SmartContractEvent getVoteEvent();
