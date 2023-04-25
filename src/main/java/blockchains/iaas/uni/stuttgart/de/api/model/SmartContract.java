@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SmartContract {
-    String smartContractPath;
-    List<SmartContractFunction> functions;
-    List<SmartContractEvent> events;
+    protected String smartContractPath;
+    protected List<SmartContractFunction> functions;
+    protected List<SmartContractEvent> events;
 }

@@ -5,9 +5,9 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 public abstract class ResourceManagerSmartContract extends SmartContract{
-    abstract SmartContractEvent getAbortEvent();
-    abstract SmartContractEvent getVoteEvent();
-    abstract SmartContractFunction getPrepareFunction();
-    abstract SmartContractFunction getAbortFunction();
-    abstract SmartContractFunction getCommitFunction();
+    public abstract SmartContractEvent getAbortEvent();
+    public abstract SmartContractEvent getVoteEvent();
+    public abstract SmartContractFunction getPrepareFunction();
+    public abstract SmartContractFunction getAbortFunction();
+    public abstract SmartContractFunction getCommitFunction();
 }
