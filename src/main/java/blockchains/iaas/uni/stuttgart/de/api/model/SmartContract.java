@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2023 Institute for the Architecture of Application System - University of Stuttgart
+ * Copyright (c) 2023-2024 Institute for the Architecture of Application System - University of Stuttgart
  * Author: Ghareeb Falazi
  *
  * This program and the accompanying materials are made available under the
@@ -12,7 +12,6 @@ package blockchains.iaas.uni.stuttgart.de.api.model;
 
 import lombok.*;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 @Setter
