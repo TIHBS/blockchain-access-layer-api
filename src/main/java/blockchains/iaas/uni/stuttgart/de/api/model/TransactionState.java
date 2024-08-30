@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2019-2022 Institute for the Architecture of Application System -
+ * Copyright (c) 2019-2024 Institute for the Architecture of Application System -
  * University of Stuttgart
  * Author: Ghareeb Falazi
  *
@@ -11,7 +11,8 @@
  ********************************************************************************/
 package blockchains.iaas.uni.stuttgart.de.api.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
+
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "State")
 public enum TransactionState {

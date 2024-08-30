@@ -11,15 +11,13 @@
 
 package blockchains.iaas.uni.stuttgart.de.api.utils;
 
-import com.google.common.base.Strings;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class TimeUtils {
 
     public static LocalDateTime getTimestampObject(String isoTimestamp) {
-        if (!Strings.isNullOrEmpty(isoTimestamp)) {
+        if (isoTimestamp != null && !isoTimestamp.isEmpty()) {
             return LocalDateTime.parse(isoTimestamp, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         }
 

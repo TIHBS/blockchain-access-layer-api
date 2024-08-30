@@ -1,13 +1,5 @@
-package blockchains.iaas.uni.stuttgart.de.api.model;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.math.BigInteger;
-
 /********************************************************************************
- * Copyright (c) 2018 Institute for the Architecture of Application System -
+ * Copyright (c) 2018-2024 Institute for the Architecture of Application System -
  * University of Stuttgart
  * Author: Ghareeb Falazi
  *
@@ -17,13 +9,26 @@ import java.math.BigInteger;
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-@XmlRootElement(name="Block")
+package blockchains.iaas.uni.stuttgart.de.api.model;
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigInteger;
+
+@Setter
+@XmlRootElement(name = "Block")
 @XmlAccessorType(XmlAccessType.NONE)
 public class Block {
+    @Getter
     private BigInteger number;
     private String hash;
 
-    public Block(){
+    public Block() {
 
     }
 
@@ -32,29 +37,17 @@ public class Block {
         this.hash = hash;
     }
 
-    public BigInteger getNumber() {
-        return number;
-    }
-
-    public void setNumber(BigInteger number) {
-        this.number = number;
-    }
-
-    @XmlElement(name="BlockNumber")
-    public long getNumberAsLong(){
+    @XmlElement(name = "BlockNumber")
+    public long getNumberAsLong() {
         return this.number.longValue();
     }
 
-    public void setNumberAsLong(long value){
+    public void setNumberAsLong(long value) {
         this.number = BigInteger.valueOf(value);
     }
 
-    @XmlElement(name="BlockHash")
+    @XmlElement(name = "BlockHash")
     public String getHash() {
         return hash;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
     }
 }

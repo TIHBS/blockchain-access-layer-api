@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 Institute for the Architecture of Application System - University of Stuttgart
+ * Copyright (c) 2019-2024 Institute for the Architecture of Application System - University of Stuttgart
  * Author: Ghareeb Falazi
  *
  * This program and the accompanying materials are made available under the
@@ -14,10 +14,10 @@ package blockchains.iaas.uni.stuttgart.de.api.utils;
 import blockchains.iaas.uni.stuttgart.de.api.exceptions.BalException;
 import blockchains.iaas.uni.stuttgart.de.api.exceptions.ParameterException;
 import blockchains.iaas.uni.stuttgart.de.api.model.Parameter;
+import jakarta.xml.bind.DatatypeConverter;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.xml.bind.DatatypeConverter;
+import jakarta.json.JsonObject;
+import jakarta.json.Json;
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 
@@ -40,34 +40,32 @@ public class JsonSchemaToJavaTypeMapper {
 
         String type = jsonObject.getString("type");
 
-        if (type.equals("boolean")) {
-            return Boolean.parseBoolean(value);
-        }
+        switch (type) {
+            case "boolean" -> {
+                return Boolean.parseBoolean(value);
+            }
+            case "string" -> {
+                if (jsonObject.containsKey("pattern") && jsonObject.getString("pattern").equals("^[a-fA-F0-9]{2}$")) {
+                    byte[] bytes = DatatypeConverter.parseHexBinary(value);
 
-        if (type.equals("string")) {
-            if (jsonObject.containsKey("pattern") && jsonObject.getString("pattern").equals("^[a-fA-F0-9]{2}$")) {
-                byte[] bytes = DatatypeConverter.parseHexBinary(value);
+                    if (bytes.length == 1) {
+                        return bytes[0];
+                    }
 
-                if (bytes.length == 1) {
-                    return bytes[0];
+                    throw new ParameterException("Invalid byte array: " + value);
                 }
 
-                throw new ParameterException("Invalid byte array: " + value);
+                return value;
             }
-
-            return value;
-        }
-
-        if (type.equals("integer")) {
-            return Long.parseLong(value);
-        }
-
-        if (type.equals("number")) {
-            return Double.parseDouble(value);
-        }
-
-        if (type.equals("array")) {
-            return handleArrayType(jsonObject, value);
+            case "integer" -> {
+                return Long.parseLong(value);
+            }
+            case "number" -> {
+                return Double.parseDouble(value);
+            }
+            case "array" -> {
+                return handleArrayType(jsonObject, value);
+            }
         }
 
         throw new ParameterException("Unrecognized type!");

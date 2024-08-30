@@ -1,15 +1,5 @@
-package blockchains.iaas.uni.stuttgart.de.api.model;
-
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.math.BigInteger;
-import java.util.List;
-
 /********************************************************************************
- * Copyright (c) 2018 Institute for the Architecture of Application System -
+ * Copyright (c) 2018-2024 Institute for the Architecture of Application System -
  * University of Stuttgart
  * Author: Ghareeb Falazi
  *
@@ -19,7 +9,22 @@ import java.util.List;
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
+package blockchains.iaas.uni.stuttgart.de.api.model;
 
+
+import java.math.BigInteger;
+import java.util.List;
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Setter
+@Getter
 @XmlRootElement(name="Transaction")
 @XmlAccessorType(XmlAccessType.NONE)
 public class LinearChainTransaction extends Transaction {
@@ -51,46 +56,6 @@ public class LinearChainTransaction extends Transaction {
         this.block = block;
         this.from = from;
         this.to = to;
-        this.value = value;
-    }
-
-    public String getTransactionHash() {
-        return transactionHash;
-    }
-
-    public void setTransactionHash(String transactionHash) {
-        this.transactionHash = transactionHash;
-    }
-
-    public Block getBlock() {
-        return block;
-    }
-
-    public void setBlock(Block block) {
-        this.block = block;
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    public BigInteger getValue() {
-        return value;
-    }
-
-    public void setValue(BigInteger value) {
         this.value = value;
     }
 

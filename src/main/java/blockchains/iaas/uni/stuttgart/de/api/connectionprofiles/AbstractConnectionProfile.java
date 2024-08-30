@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2019 Institute for the Architecture of Application System -
+ * Copyright (c) 2019-2024 Institute for the Architecture of Application System -
  * University of Stuttgart
  * Author: Ghareeb Falazi
  *
@@ -14,19 +14,17 @@ package blockchains.iaas.uni.stuttgart.de.api.connectionprofiles;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Getter;
 
 import java.util.Properties;
 
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME)
 public abstract class AbstractConnectionProfile {
     private static final String PREFIX = "common.";
     private static final String ADVERSARY_VOTING_RATIO = PREFIX + "adversaryVotingRatio";
     private double adversaryVotingRatio;
-
-    public double getAdversaryVotingRatio() {
-        return adversaryVotingRatio;
-    }
 
     public void setAdversaryVotingRatio(double adversaryVotingRatio) {
         if (adversaryVotingRatio < 0 || adversaryVotingRatio > 1.0) {

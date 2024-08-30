@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 Institute for the Architecture of Application System - University of Stuttgart
+ * Copyright (c) 2019-2024 Institute for the Architecture of Application System - University of Stuttgart
  * Author: Ghareeb Falazi
  *
  * This program and the accompanying materials are made available under the
@@ -12,14 +12,14 @@ package blockchains.iaas.uni.stuttgart.de.api.utils;
 
 import blockchains.iaas.uni.stuttgart.de.api.interfaces.FinalityConfidenceCalculator;
 import blockchains.iaas.uni.stuttgart.de.api.model.LinearChainTransaction;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
 public class PoWConfidenceCalculator implements FinalityConfidenceCalculator {
+    @Setter
     private long currentBlockchainHeight;
     private double adversaryRatio;
-
-    public double getAdversaryRatio() {
-        return adversaryRatio;
-    }
 
     public void setAdversaryRatio(double adversaryRatio) {
         if (adversaryRatio >= 0.0 && adversaryRatio <= 1.0) {
@@ -27,14 +27,6 @@ public class PoWConfidenceCalculator implements FinalityConfidenceCalculator {
         } else {
             throw new IllegalArgumentException("Adversary ratio must be between 0.0 and 1.0!");
         }
-    }
-
-    public long getCurrentBlockchainHeight() {
-        return currentBlockchainHeight;
-    }
-
-    public void setCurrentBlockchainHeight(long currentBlockchainHeight) {
-        this.currentBlockchainHeight = currentBlockchainHeight;
     }
 
     /**

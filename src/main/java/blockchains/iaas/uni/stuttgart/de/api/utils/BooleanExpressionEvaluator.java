@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 Institute for the Architecture of Application System - University of Stuttgart
+ * Copyright (c) 2019-2024 Institute for the Architecture of Application System - University of Stuttgart
  * Author: Ghareeb Falazi
  *
  * This program and the accompanying materials are made available under the
@@ -12,25 +12,24 @@
 package blockchains.iaas.uni.stuttgart.de.api.utils;
 
 import blockchains.iaas.uni.stuttgart.de.api.model.Parameter;
-import com.google.common.base.Strings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.util.List;
 
+@Log4j2
 public class BooleanExpressionEvaluator {
-    private static final Logger log = LoggerFactory.getLogger(BooleanExpressionEvaluator.class);
 
     public static boolean evaluate(String expression, List<Parameter> parameters) throws Exception {
-        if (Strings.isNullOrEmpty(expression)) {
+        if (expression == null || expression.isEmpty()) {
             return true;
         }
         
         ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine jsEngine = mgr.getEngineByName("JavaScript");
+        ScriptEngine jsEngine = mgr.getEngineByName("graal.js");
+        log.info("Available script engines: {}", new ScriptEngineManager().getEngineFactories());
 
         for (Parameter param : parameters) {
             jsEngine.put(param.getName(), JsonSchemaToJavaTypeMapper.map(param));

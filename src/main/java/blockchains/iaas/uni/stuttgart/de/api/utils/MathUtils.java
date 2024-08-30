@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 Institute for the Architecture of Application System - University of Stuttgart
+ * Copyright (c) 2019-2024 Institute for the Architecture of Application System - University of Stuttgart
  * Author: Ghareeb Falazi
  *
  * This program and the accompanying materials are made available under the
@@ -10,19 +10,18 @@
  *******************************************************************************/
 package blockchains.iaas.uni.stuttgart.de.api.utils;
 
-import com.google.common.math.BigIntegerMath;
-import com.google.common.math.LongMath;
 
 import java.math.BigInteger;
-import java.math.RoundingMode;
+import org.apache.commons.math3.util.CombinatoricsUtils;
 
 public class MathUtils {
     public static final double ACCEPTED_DOUBLE_ERROR = 0.000001;
     public static long factorial(int n) {
-        return  LongMath.factorial(n);
+        return  CombinatoricsUtils.factorial(n);
     }
+
     public static int log2(BigInteger n) throws ArithmeticException {
-        return BigIntegerMath.log2(n, RoundingMode.UNNECESSARY);
+        return n.bitLength();
     }
 
     public static int doubleCompare(double lhs, double rhs) {

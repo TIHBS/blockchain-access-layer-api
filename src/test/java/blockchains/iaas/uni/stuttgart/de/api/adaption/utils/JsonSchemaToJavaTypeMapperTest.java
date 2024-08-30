@@ -11,10 +11,10 @@
 
 package blockchains.iaas.uni.stuttgart.de.api.adaption.utils;
 
-import javax.xml.bind.DatatypeConverter;
 
 import blockchains.iaas.uni.stuttgart.de.api.model.Parameter;
 import blockchains.iaas.uni.stuttgart.de.api.utils.JsonSchemaToJavaTypeMapper;
+import jakarta.xml.bind.DatatypeConverter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
