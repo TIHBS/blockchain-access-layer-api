@@ -42,6 +42,10 @@ public abstract class AbstractConnectionProfile {
         return  result;
     }
 
+    public abstract Object getProperty(Object key);
+    
+    public abstract void setProperty(Object key, Object value);
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
