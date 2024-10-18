@@ -87,7 +87,8 @@ public interface BlockchainAdapter {
             List<Parameter> inputs,
             List<Parameter> outputs,
             double requiredConfidence,
-            long timeoutMillis
+            long timeoutMillis,
+            boolean sideEffects
     ) throws BalException;
 
     /**
