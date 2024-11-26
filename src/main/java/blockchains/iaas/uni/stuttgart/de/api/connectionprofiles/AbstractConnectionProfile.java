@@ -42,6 +42,8 @@ public abstract class AbstractConnectionProfile {
         return  result;
     }
 
+    public abstract String getIdentity();
+
     public abstract Object getProperty(Object key);
     
     public abstract void setProperty(Object key, Object value);
